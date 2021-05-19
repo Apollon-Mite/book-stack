@@ -7,9 +7,7 @@ CREATE TABLE "reader" (
   "firstname" TEXT NOT NULL,
   "lastname" TEXT NOT NULL,
   "email" TEXT NOT NULL,
-  "password" TEXT NOT NULL,
-  "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-  "updated_at" TIMESTAMPTZ
+  "password" TEXT NOT NULL
 );
 
 CREATE TABLE "writer" (
@@ -17,9 +15,7 @@ CREATE TABLE "writer" (
   "firstname" TEXT NOT NULL,
   "lastname" TEXT NOT NULL,
   "email" TEXT NOT NULL,
-  "password" TEXT NOT NULL,
-  "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-  "updated_at" TIMESTAMPTZ
+  "password" TEXT NOT NULL
 );
 
 CREATE TABLE "book" (
@@ -27,9 +23,7 @@ CREATE TABLE "book" (
   "writer_id" INTEGER NOT NULL REFERENCES writer("id"),
   "title" TEXT NOT NULL,
   "description" TEXT NOT NULL,
-  "picture_url" TEXT NOT NULL,
-  "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-  "updated_at" TIMESTAMPTZ
+  "picture_url" TEXT NOT NULL
 );
 
 
@@ -38,9 +32,7 @@ CREATE TABLE "feedback" (
   "reader_id" INTEGER NOT NULL REFERENCES reader("id"),
   "book_id" INTEGER NOT NULL REFERENCES book("id"),
   "content" TEXT NOT NULL,
-  "stars" INTEGER NOT NULL,
-  "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-  "updated_at" TIMESTAMPTZ
+  "stars" INTEGER NOT NULL
 );
 
 
