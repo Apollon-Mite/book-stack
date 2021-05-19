@@ -12,7 +12,7 @@ const bookController = {
       res.status(500).json(error.toString());
     }
   },
-
+// cool
   // getOneProduct: async (req, res) => {
   //    try {
   //       const productId = req.params.id;
