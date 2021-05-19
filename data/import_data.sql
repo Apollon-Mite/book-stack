@@ -1,5 +1,7 @@
 BEGIN;
 
+DROP TABLE IF EXISTS "reader", "writer", "book", "feedback", "reader_likes_book";
+
 CREATE TABLE "reader" (
   "id" SERIAL PRIMARY KEY,
   "firstname" TEXT NOT NULL,
