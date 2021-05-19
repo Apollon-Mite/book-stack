@@ -1,0 +1,209 @@
+GET http://localhost:3000/customer/2
+Content-Type: application/json
+Authorization: bearer token
+
+
+### création d'un compte seller
+POST http://localhost:3000/writer/signup
+Content-Type: application/json
+
+{
+  "email": "abdoula@gmail.com",
+  "password": "abdoula",
+  "passwordConfirm" : "abdoula",
+  "lastname": "Katana",
+  "firstname": "Shimeyu"
+}
+
+###
+POST http://localhost:3000/writer/login
+Content-Type: application/json
+
+{
+    "email": "abdoula@gmail.com",
+    "password": "abdoula"
+}
+
+###
+POST http://localhost:3000/writer/4/book
+Content-Type: application/json
+Authorization : Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsInJvbGUiOiJ3cml0ZXIiLCJpYXQiOjE2MjE0NTQ5NjAsImV4cCI6MTYyMTQ2NTc2MH0.3k2jxUZJxf3YJ2XKl-EqYPz2Kv44MhofokfSWlfw_qQ
+
+{
+  "title": "Le roi Arthur",
+  "description": "L'histoire des chevalier de la table ronde",
+  "picture_url": "http://www.generationmalraux.info/wp-content/uploads/2020/12/51XwktB0TYL._SX361_BO1204203200_.jpg"
+}
+
+
+
+
+
+// -------------------------
+// READERS
+
+### création d'un compte READER
+POST http://localhost:3000/reader/signup
+Content-Type: application/json
+
+{
+  "email": "simbad@gmail.com",
+  "password": "simbad",
+  "passwordConfirm" : "simbad",
+  "lastname": "Le Marin",
+  "firstname": "Simbad"
+}
+
+### connexion READER
+POST http://localhost:3000/reader/login
+Content-Type: application/json
+
+{
+    "email": "simbad@gmail.com",
+    "password": "simbad"
+}
+
+
+###
+POST http://localhost:3000/reader/4/book
+Content-Type: application/json
+Authorization : Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsInJvbGUiOiJyZWFkZXIiLCJpYXQiOjE2MjE0NTgxOTMsImV4cCI6MTYyMTQ2ODk5M30.S8-44cRL1YRVUHxhTvgJLa2wei8unQUoINtdutHIPrU
+
+{
+  "bookId": 2
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+### création d'un compte customer
+POST http://localhost:3000/customer/signup
+Content-Type: application/json
+
+{
+  "gender": "F",
+  "email": "nanotechno@gmail.com",
+  "password": "abdoula",
+  "passwordConfirm" : "abdoula",
+  "lastname": "Backeux",
+  "firstname": "Maître",
+  "phone_number": "0661737865",
+  "street_name": "boulevard ",
+  "street_number": "13",
+  "city": "Paris",
+  "zipcode": 75000
+}
+
+
+### connexion à un compte seller
+POST http://localhost:3000/seller/login
+Content-Type: application/json
+
+{
+    "email": "jordanie123@gmail.com",
+    "password": "abdoula"
+}
+
+
+### connexion à un compte customer
+POST http://localhost:3000/customer/login
+Content-Type: application/json
+
+{
+    "email": "nanotechno@gmail.com",
+    "password": "abdoula"
+}
+
+### Editer un compte seller
+PATCH http://localhost:3000/customer/5
+Content-Type: application/json
+Authorization : Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjcsInJvbGUiOiJjdXN0b21lciIsImlhdCI6MTYxNTEyMDM0NCwiZXhwIjoxNjE1MTMxMTQ0fQ.hMr5zLJXgI9e6imnN4b_0b-0Djg4C1mQJMLDUH3iSd0
+
+{
+    "gender": "M",
+    //"email": "abdoula06@gmail.com",
+    "password": "soismonami",
+    "passwordConfirm" : "soismonami",
+    "lastname": "Exploratrice",
+    "firstname": "Dora",
+    "phone_number": "0661737865",
+    "street_name": "boulevard Tokyo",
+    "street_number": "13",
+    "city": "Paris",
+    "zipcode": 75000,
+    "picture_url": "https://img-4.linternaute.com/lUM_6jl2EZ6NpWNkH70wj25s0aw=/1240x/1b2dbaad11b84ee8bde02cfcd0b823dd/ccmcms-linternaute/83141.jpg",
+    "siret": 82365600199999,
+    "shop_name": "Chez David",
+    "shop_presentation": "Je suis vendeur de légumes reconverti dans les roses"
+}
+
+### Editer un compte seller
+PATCH http://localhost:3000/seller/5
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsInJvbGUiOiJzZWxsZXIiLCJpYXQiOjE2MTUxMjQwOTEsImV4cCI6MTYxNTEzNDg5MX0.xZGWX8pCfd-gyaMDFlfRqIu6Fuqd5rz9qpoVjhIn7I4
+
+{
+    "gender": "F",
+    
+    "password": "soismonami",
+    "passwordConfirm" : "soismonami",
+    "lastname": "Exploratrice",
+    "firstname": "Dora la vieille du 06",
+    "phone_number": "0661737865",
+    "street_name": "boulevard Shino",
+    "street_number": "13",
+    "city": "Paris",
+    "zipcode": 75000,
+    "picture_url": "https://img-4.linternaute.com/lUM_6jl2EZ6NpWNkH70wj25s0aw=/1240x/1b2dbaad11b84ee8bde02cfcd0b823dd/ccmcms-linternaute/83141.jpg",
+    "siret": 82365600199999,
+    "shop_name": "Chez David",
+    "shop_presentation": "Tu es reconverti dans les roses",
+    "shop_me_if_you_can" : "Ok bro"
+}
+
+
+### Ajouter un nouveau produit
+POST http://localhost:3000/seller/9/products
+Content-Type: application/json
+Authorization : Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjksInJvbGUiOiJzZWxsZXIiLCJpYXQiOjE2MTYzMTY5NDIsImV4cCI6MTYxNjMyNzc0Mn0.CmlSaW6gXuZzYqTChPH5TArsidWEtrhBBtxz3kkotbY
+
+{
+  "name": "Tasmanie",
+  "description": "Le bouquet composé en Australie",
+  "stock": "11",
+  "price": "99.00",
+  "seller_id": "1",
+  "category_id": "1",
+  "image": "https://www.topdecomobilier.com/12546-thickbox_default/bouquet-de-18-fleurs-blanches-h50.jpg"
+}
+
+
+### editImage
+PATCH http://localhost:3000/image/3
+Content-Type: application/json
+
+{
+  "url": "https://images.unsplash.com/photo-1583400870901-36aee2929bf9?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=633&q=80"
+}
+
+###
+POST http://localhost:3000/customer/3/order
+Content-Type: application/json
+
+###
+PATCH http://localhost:3000/product/3
+Content-Type: application/json
+
+{
+  "name": "Les délicates",
+  "stock": 32
+}

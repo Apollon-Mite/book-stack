@@ -1,4 +1,4 @@
-const {Book, Writer } = require('../models');
+const {Book, Writer, Reader, ReaderLikesBook } = require('../models');
 
 const bookController = {
   getAllBooks: async (req, res) => {
@@ -73,11 +73,18 @@ const bookController = {
         return response.status(401).json('You have no right to make this action');
       }
 
+      const writer = await Writer.findByPk(writerId);
+      
+      if (!writer) {
+        return response.status(404).json('User not found');
+      }
+
+
       const { title , description, picture_url} = request.body;
       
       if(title && description && picture_url && writerId ) {
-        const newBook = await Book.create({
-          title: reference,
+        await Book.create({
+          title: title,
           description: description,
           picture_url: picture_url, 
           writer_id: writerId,
@@ -87,6 +94,43 @@ const bookController = {
       } else {
         response.status(400).json('Données manquantes')
       }
+      
+    } catch (error) {
+      console.trace(error);
+      response.status(500).json(error.toString());
+    }
+  },
+
+  saveBook: async (request, response) => {
+    try {
+      readerId = request.params.id;
+
+      const { bookId } = request.body;
+      
+      if (readerId != request.user.userId || request.user.role !== 'reader') {
+        return response.status(401).json('You have no right to make this action');
+      }
+
+      const reader = await Reader.findByPk(readerId);
+      
+      if (!reader) {
+        return response.status(404).json('User not found');
+      }
+
+      const book = await Book.findByPk(bookId);
+      
+      if (!book) {
+        return response.status(404).json('Book not found');
+      }
+
+
+      ReaderLikesBook.create ({
+        reader_id: readerId,
+        book_id: bookId
+      })
+
+      response.status(200).json('success');
+      
       
     } catch (error) {
       console.trace(error);
