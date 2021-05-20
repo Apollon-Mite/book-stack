@@ -67,10 +67,10 @@ Content-Type: application/json
 ###
 POST http://localhost:3000/reader/4/book
 Content-Type: application/json
-Authorization : Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsInJvbGUiOiJyZWFkZXIiLCJpYXQiOjE2MjE0NTgxOTMsImV4cCI6MTYyMTQ2ODk5M30.S8-44cRL1YRVUHxhTvgJLa2wei8unQUoINtdutHIPrU
+Authorization : Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsInJvbGUiOiJyZWFkZXIiLCJpYXQiOjE2MjE1MDE0MzAsImV4cCI6MTYyMTUxMjIzMH0.HP8tP0mZSNE5nk5YyMRsPp7GEtfK-bD6aDRTi_HiRnE
 
 {
-  "bookId": 2
+  "bookId": 1
 }
 
 

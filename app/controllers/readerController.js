@@ -1,4 +1,4 @@
-const {Reader} = require('../models');
+const {Reader, Book} = require('../models');
 const bcrypt = require('bcrypt');
 const validator = require('email-validator');
 const jsonwebtoken = require('jsonwebtoken')
@@ -128,8 +128,9 @@ const readerController = {
     try {
       const readers = await Reader.findAll({ 
         attributes: { exclude: ['password'], // we don't want the password to be seen in the object we will send
-        order: [['id', 'ASC']]
-      } 
+          order: [['id', 'ASC']],  
+        },
+        include: 'books'
       });
 
       if (!readers) {

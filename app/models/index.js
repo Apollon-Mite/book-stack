@@ -49,10 +49,10 @@ Feedback.belongsTo(Book, {
 
 
 // Reader <> Books, via la table de liaison
-// "Un Reader possède plusieurs Bookss"
+// "Un Reader possède plusieurs Books"
 Reader.belongsToMany(Book, {
-  as: "readers", // alias de l'association 
-  through: ReaderLikesBook, // "via la table de liaison qui s'appelle ..."
+  as: "books", // alias de l'association 
+  through: "reader_likes_book", // "via la table de liaison qui s'appelle ..."
   foreignKey: 'reader_id', // le nom de la clef de Product dans la table de liaison
   otherKey: 'book_id', // le nom de la clef de "l'autre" (donc Order)
   timestamps: false // il n'y a pas de updated-at dans la table de liaison
@@ -60,12 +60,14 @@ Reader.belongsToMany(Book, {
 
 // et la réciproque..
 Book.belongsToMany(Reader, {
-  as: "products", 
-  through: ReaderLikesBook,
+  as: "readers", 
+  through: 'reader_likes_book',
   foreignKey: 'book_id',
   otherKey: 'reader_id',
   timestamps: false // il n'y a pas de updated-at dans la table de liaison
 });
+
+
 
 
 module.exports = { Reader, Writer, Book, Feedback, ReaderLikesBook };
