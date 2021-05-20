@@ -67,13 +67,20 @@ Content-Type: application/json
 ###
 POST http://localhost:3000/reader/4/book
 Content-Type: application/json
-Authorization : Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsInJvbGUiOiJyZWFkZXIiLCJpYXQiOjE2MjE1MDE0MzAsImV4cCI6MTYyMTUxMjIzMH0.HP8tP0mZSNE5nk5YyMRsPp7GEtfK-bD6aDRTi_HiRnE
+Authorization : Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsInJvbGUiOiJyZWFkZXIiLCJpYXQiOjE2MjE1MTc0NTAsImV4cCI6MTYyMTUyODI1MH0.B7TaSmRYjtzlP71gOJg0EdSJt4Jb1nY2yV2WXp4CEKA
 
 {
-  "bookId": 1
+  "bookId": 3
 }
 
+###
+DELETE http://localhost:3000/reader/4/book
+Content-Type: application/json
+Authorization : Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsInJvbGUiOiJyZWFkZXIiLCJpYXQiOjE2MjE1MTc0NTAsImV4cCI6MTYyMTUyODI1MH0.B7TaSmRYjtzlP71gOJg0EdSJt4Jb1nY2yV2WXp4CEKA
 
+{
+  "bookId": 3
+}
 
 
 

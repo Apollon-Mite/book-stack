@@ -4,13 +4,11 @@ const sequelize = require('../db');
 class Feedback extends Model {};
 
 Feedback.init({
-  firstname: DataTypes.TEXT,
-  lastname: DataTypes.TEXT,
-  email: DataTypes.TEXT,
-  password: DataTypes.TEXT,
+  content: DataTypes.TEXT,
+  stars: DataTypes.INTEGER
 }, {
   sequelize,
-  tableName: "Feedback"
+  tableName: "feedback"
 });
 
 module.exports = Feedback;

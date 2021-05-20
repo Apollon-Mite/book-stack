@@ -3,7 +3,6 @@ const bcrypt = require('bcrypt');
 const validator = require('email-validator');
 const jsonwebtoken = require('jsonwebtoken')
 const jwtSecret = process.env.JWT_SECRET;
-// const { Op } = require('sequelize');
 
 const readerController = {
     readerHandleLoginForm: async (request, response) => {
@@ -91,7 +90,7 @@ const readerController = {
 
         if (reader) {
             //il y a déjà un utilisateur avec cet email, on envoie une erreur
-            // there is already a seller with this email  
+            // there is already a reader with this email  
             return response.status(403).json('Un compte existe déjà avec cet email, veuillez réessayer avec un autre email');
         }
         //on checke que l'email a un format valide
@@ -145,106 +144,7 @@ const readerController = {
     }
   },
 
-  // getOneSeller: async (request, response) => {
-  //   try {
-  //     const sellerId = request.params.id;
-  //     const seller = await Seller.findByPk(sellerId, {
-  //       attributes: { exclude: ['password'] } // we don't want the password to be seen in the object we will send    
-  //     });
-      
-  //     if (seller) {  
-  //       response.status(200).json(seller);
-      
-  //   } else {
-  //       response.status(404).json('Cant find seller with id ' + sellerId);
-  //     }
-  //   } catch (error) {
-  //     console.trace(error);
-  //     response.status(500).json(error.toString());
-  //   }
-  // },
-
-  // editSellerProfile: async (request, response) => {
-  //   try {
-  //       const sellerId = request.params.id;
-
-  //       // console.log("request.user", request.user)
-  //       // console.log("request.user.userId", request.user.userId)
-  //       // if (sellerId != request.user.userId || request.user.role !== 'seller') {
-  //       //   return response.status(401).json('You have no right to edit seller :' + sellerId);
-  //       // }
-
-  //       const { email, password, passwordConfirm } = request.body;
-   
-  //       let seller = await Seller.findByPk(sellerId);
-  //       if (!seller) {
-  //         response.status(404).json(`Cant find seller with id ${sellerId}`);
-  //       } else {
-
-  //           if (email) {
-  //               //on checke que l'email a un format valide
-  //               if (!validator.validate(request.body.email)) {
-  //                   // the email given has not valid format 
-  //                   return response.status(403).json('Le format de l\'email est incorrect'); 
-  //               }
-  //               const sellerExists = await Seller.findOne({
-  //                   where: {
-  //                       email: email,
-  //                   }
-  //               });
-
-  //               if (sellerExists) {
-  //                   // il y a déjà un seller avec cet email, on envoie une erreur
-  //                   // there is already a seller with this email => error
-  //                   return response.status(403).json('Un compte existe déjà avec cet email, veuillez réessayer avec un autre email');
-  //               }
-  //           } 
-  //           // if we get here, it means that email format is valid and no other seller has this email
-
-
-  //           // on ne change que les paramètre envoyés
-  //           // we patch with received data only
-  //           for(const element in request.body) {
-  //               //console.log(element)
-  //               if (seller[element] && element!= 'password') { // we check that request.body doesn't contain anything unwanted, so it CAN'T contain properties that seller does not have (except passwordConfirm). We don't 
-  //                   seller[element] = request.body[element] // instead of having 14 conditions like ` if (email) { seller.email = email } ` this will do all the work in 2 lines
-  //                   //console.log("OK pour : "+element)
-  //               } else {
-  //                   //console.log(element+" n'est pas une propriété attendue ici")
-  //               }
-  //           }
-
-  //           if (password) {
-  //               if (password != passwordConfirm) {
-  //                   return response.status(403).json('La confirmation du mot de passe a échoué');
-  //               }
-
-  //               const hashedPwd = bcrypt.hashSync(request.body.password, 10)
-  //               seller.password = hashedPwd;
-  //           }
-
-  //           // other way to do this :
-  //           //     if (firstname) {
-  //           //        seller.firstname = firstname;
-  //           //     }
-  //           //     if (lastname) {
-  //           //        seller.lastname = lastname;
-  //           //     }
-            
-
-  //         await seller.save();
-          
-  //         const updatedSeller = await Seller.findByPk(sellerId, {
-  //           attributes: { exclude: ['password'] } // we don't want the password to be seen in the object we will send 
-  //         });
-
-  //         response.json(updatedSeller);
-  //       }
-  //   } catch (error) {
-  //     console.trace(error);
-  //     response.status(500).json(error.toString());
-  //   }
-  // },
+  
 };
 
 module.exports = readerController;

@@ -19,7 +19,8 @@ router.get('/', (req, res) => {
 // BOOKS
 router.get('/books', bookController.getAllBooks);
 router.post('/writer/:id(\\d+)/book', authorization, bookController.addNewBook)
-router.post('/reader/:id(\\d+)/book', authorization, bookController.saveBook)
+router.post('/reader/:id(\\d+)/book', authorization, bookController.saveBookToStack)
+router.delete('/reader/:id(\\d+)/book', authorization, bookController.removeBookFromStack)
 
 // WRITER
 router.get('/writers', writerController.getAllWriters);
