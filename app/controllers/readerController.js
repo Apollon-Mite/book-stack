@@ -8,7 +8,7 @@ const readerController = {
     readerHandleLoginForm: async (request, response) => {
         try {
             // on cherche à identifier le reader à partir de son email
-            // we are trying to identify a reader from his password
+            // we are trying to identify a reader from his email
             const email = request.body.email;
 
             if (!validator.validate(email)) {

@@ -22,21 +22,19 @@ app.use((request, response, next) => {
   next();
 });
 
-
 app.use(upload.array());
 
 app.use((req, res, next) => {
   console.log('Server received ', req.body);
 
   for (let prop in req.body) {
-    req.body[prop] = sanitizer.escape(req.body[prop]) //added sanitizer
+    req.body[prop] = sanitizer.escape(req.body[prop]) // escape() replaces <, >, &, ', " and / with their corresponding HTML entities
+    // added sanitizer,
   }
   next();
 });
 
 app.use(express.json());
-
-
 
 app.use(router);
 
