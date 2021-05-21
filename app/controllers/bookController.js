@@ -5,7 +5,7 @@ const bookController = {
   getAllBooks: async (req, res) => {
     try {
       const books = await Book.findAll({       
-        include : ['writer']
+        include : ['writer', 'feedbacks']
       });
       res.json(books);
     } catch (error) {
