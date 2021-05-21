@@ -12,48 +12,47 @@ const readerController = {
             const email = request.body.email;
 
             if (!validator.validate(email)) {
-                // the email given has not valid format 
-                return response.status(403).json('Le format de l\'email est incorrect'); 
+              // the email given has not valid format 
+              return response.status(403).json('Le format de l\'email est incorrect'); 
             }
 
             const reader = await Reader.findOne({
-                where: { 
-                    email
-                },
+              where: { 
+                  email
+              },
             })
                 
-            // if no seller found with this email => error
             if (!reader) {
-                return response.status(403).json('Email ou mot de passe incorrect')
+              return response.status(403).json('Email ou mot de passe incorrect')
+              // no reader found with this email => error
             }
-  
             // the reader with this email exists, let's compare received password with the hashed one in database
             
             // bcrypt can check if 2 passwords are the same, the password entered by user and the one in database 
             const validPwd = await bcrypt.compare(request.body.password, reader.dataValues.password);
 
             if (!validPwd) {
-                // password is not correct, we send an error
-                return response.status(403).json('Email ou mot de passe incorrect')
+              // password is not correct, we send an error
+              return response.status(403).json('Email ou mot de passe incorrect')
             }
 
-            //const { password, ...sellerData} = seller.dataValues; // like this, we remove password from object that we'll send because it is sensitive data
-            
             // this seller exists and identified himself, we send him his data (witout password)
             const updatedReader = await Reader.findOne({
-                where: { 
-                    email
-                },
-                attributes: { exclude: ['password'] } // we don't want the password to be seen in the object we will send
+              where: { 
+                  email
+              },
+              attributes: { exclude: ['password'] } // we don't want the password to be seen in the object we will send
       
             })
 
-            const jwtContent = { userId: updatedReader.id, role: "reader" };
+            const jwtContent = { 
+              userId: updatedReader.id, 
+              role: "reader" 
+            };
             const jwtOptions = { 
               algorithm: 'HS256', 
               expiresIn: '3h' 
             };
-            console.log('<< 200', updatedReader.email);
 
             response.json({ 
               logged: true, 
@@ -62,8 +61,6 @@ const readerController = {
               token: jsonwebtoken.sign(jwtContent, jwtSecret, jwtOptions),
             });
 
-            
-            //response.status(200).json(updatedSeller);
             
         } catch (error) {
           response.status(500).json(error.toString())
@@ -80,35 +77,35 @@ const readerController = {
       if ( !email || !password || !passwordConfirm || !lastname || !firstname ) {
         return response.status(403).json('Vous n\'avez pas rempli tous les champs');  
       }
+      if ( !email.trim() || !password.trim() || !passwordConfirm.trim() || !lastname.trim() || !firstname.trim() ) {
+        return response.status(403).json('Vous n\'avez pas rempli tous les champs');  
+      } // trim() verifies if data is not composed of spaces only, in fact it deletes all spaces in a string
       
         //on checke si un utilisateur existe déjà avec cet email
         const reader = await Reader.findOne({
-            where: {
-                email: email
-            }
+          where: {
+              email: email
+          }
         });
 
-        if (reader) {
-            //il y a déjà un utilisateur avec cet email, on envoie une erreur
-            // there is already a reader with this email  
-            return response.status(403).json('Un compte existe déjà avec cet email, veuillez réessayer avec un autre email');
+        if (reader) {           
+          // there is already a reader with this email  
+          return response.status(403).json('Un compte existe déjà avec cet email, veuillez réessayer avec un autre email');
         }
         //on checke que l'email a un format valide
         if (!validator.validate(email)) {
-            // the email given has not valid format 
-            return response.status(403).json('Le format de l\'email est incorrect'); 
+          // the email given has not valid format 
+          return response.status(403).json('Le format de l\'email est incorrect'); 
         }
         // let's check that password and password-confirmation are the same
         if (password !== passwordConfirm) {
-            // they are not the same;
-            return response.status(403).json('La confirmation du mot de passe a échoué');
+          // they are not the same;
+          return response.status(403).json('La confirmation du mot de passe a échoué');
         }
         // we hash password
         const hashedPwd = await bcrypt.hash(password, 10)
         
-
-        // we add the new writer in database
-        
+        // we add the new writer in database       
         await Reader.create({
             email,
             password: hashedPwd,
@@ -120,7 +117,7 @@ const readerController = {
     } catch(error) {
       response.status(500).json(error.toString())
     }
-},
+  },
 
 
     getAllReaders: async (request, response) => {

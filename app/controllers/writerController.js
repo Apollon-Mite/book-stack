@@ -81,43 +81,46 @@ const writerController = {
       if ( !email || !password || !passwordConfirm || !lastname || !firstname ) {
         return response.status(403).json('Vous n\'avez pas rempli tous les champs');  
       }
+      if ( !email.trim() || !password.trim() || !passwordConfirm.trim() || !lastname.trim() || !firstname.trim() ) {
+        return response.status(403).json('Vous n\'avez pas rempli tous les champs');  
+      } // trim() verifies if data is not composed of spaces only, in fact it deletes all spaces in a string
       
-        //on checke si un utilisateur existe déjà avec cet email
-        const writer = await Writer.findOne({
-            where: {
-                email: email
-            }
-        });
+      //on checke si un utilisateur existe déjà avec cet email
+      const writer = await Writer.findOne({
+          where: {
+              email: email
+          }
+      });
 
-        if (writer) {
-            //il y a déjà un utilisateur avec cet email, on envoie une erreur
-            // there is already a seller with this email  
-            return response.status(403).json('Un compte existe déjà avec cet email, veuillez réessayer avec un autre email');
-        }
-        //on checke que l'email a un format valide
-        if (!validator.validate(email)) {
-            // the email given has not valid format 
-            return response.status(403).json('Le format de l\'email est incorrect'); 
-        }
-        // let's check that password and password-confirmation are the same
-        if (password !== passwordConfirm) {
-            // they are not the same;
-            return response.status(403).json('La confirmation du mot de passe a échoué');
-        }
-        // we hash password
-        const hashedPwd = await bcrypt.hash(password, 10)
-        
+      if (writer) {
+          //il y a déjà un utilisateur avec cet email, on envoie une erreur
+          // there is already a seller with this email  
+          return response.status(403).json('Un compte existe déjà avec cet email, veuillez réessayer avec un autre email');
+      }
+      //on checke que l'email a un format valide
+      if (!validator.validate(email)) {
+          // the email given has not valid format 
+          return response.status(403).json('Le format de l\'email est incorrect'); 
+      }
+      // let's check that password and password-confirmation are the same
+      if (password !== passwordConfirm) {
+          // they are not the same;
+          return response.status(403).json('La confirmation du mot de passe a échoué');
+      }
+      // we hash password
+      const hashedPwd = await bcrypt.hash(password, 10)
+      
 
-        // we add the new writer in database
-        
-        await Writer.create({
-            email,
-            password: hashedPwd,
-            lastname,
-            firstname,
-        });
-        
-        response.status(200).json('success');
+      // we add the new writer in database
+      
+      await Writer.create({
+          email,
+          password: hashedPwd,
+          lastname,
+          firstname,
+      });
+      
+      response.status(200).json('success');
     } catch(error) {
       response.status(500).json(error.toString())
     }

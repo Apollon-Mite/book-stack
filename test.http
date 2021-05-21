@@ -47,11 +47,11 @@ POST http://localhost:3000/reader/signup
 Content-Type: application/json
 
 {
-  "email": "simbad@gmail.com",
+  "email": "test2@gmail.com",
   "password": "simbad",
   "passwordConfirm" : "simbad",
-  "lastname": "Le Marin",
-  "firstname": "Simbad"
+  "lastname": "Gerard",
+  "firstname": "Cornemuse"
 }
 
 ### connexion READER
