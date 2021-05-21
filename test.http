@@ -11,8 +11,8 @@ Content-Type: application/json
   "email": "abdoula@gmail.com",
   "password": "abdoula",
   "passwordConfirm" : "abdoula",
-  "lastname": "Katana",
-  "firstname": "Shimeyu"
+  "lastname": "Ka",
+  "firstname": "Sh"
 }
 
 ###
@@ -47,11 +47,11 @@ POST http://localhost:3000/reader/signup
 Content-Type: application/json
 
 {
-  "email": "test2@gmail.com",
-  "password": "simbad",
-  "passwordConfirm" : "simbad",
-  "lastname": "Gerard",
-  "firstname": "Cornemuse"
+  "email": "test5@gmail.com",
+  "password": "simba",
+  "passwordConfirm" : "simba",
+  "lastname": "Ger",
+  "firstname": "Cod"
 }
 
 ### connexion READER
