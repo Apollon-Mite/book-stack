@@ -80,7 +80,7 @@ const readerController = {
       if ( email.trim().length<4 || password.trim().length<5 || passwordConfirm.trim().length<5 || lastname.trim().length<3 || firstname.trim().length<3 ) {
         
         return response.status(403).json('Vous n\'avez pas rempli tous les champs correctement');  
-      } // trim() verifies if data is not composed of spaces only, in fact it deletes all spaces in a string
+      } // trim() verifies if data is not composed of spaces only, in fact it deletes all spaces at the beginning and at the end of a string
       
         //on checke si un utilisateur existe déjà avec cet email
         const reader = await Reader.findOne({
