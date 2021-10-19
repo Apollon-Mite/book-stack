@@ -1,6 +1,8 @@
+-- Deploy book-stack:init to pg
+
 BEGIN;
 
-DROP TABLE IF EXISTS "reader", "writer", "book", "feedback", "reader_likes_book";
+-- Pas besoin du DROP
 
 CREATE TABLE "reader" (
   "id" SERIAL PRIMARY KEY,
@@ -82,3 +84,4 @@ VALUES (1, 3),
        (1, 2);
 
 COMMIT;
+

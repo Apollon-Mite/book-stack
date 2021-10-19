@@ -1,0 +1,5 @@
+%syntax-version=1.0.0
+%project=books
+%uri=https://github.com/Apollon-Mite/book-stack
+
+init 2021-05-20T15:50:21Z Apollon-Mite <abdoulegend@hotmail.fr> # creation des tables et seed
